@@ -16,7 +16,6 @@
 #include <pluginlib/class_list_macros.h>
 
 
-
 namespace subscriber_nodelet_ns
 {
     class subscriber_nodelet: public nodelet::Nodelet
@@ -37,17 +36,19 @@ namespace subscriber_nodelet_ns
                 NODELET_INFO("Initializing Subscriber nodelet");
                 ros::NodeHandle& node = getNodeHandle();
                 ros::NodeHandle& private_nh = getPrivateNodeHandle();
-
+                NODELET_INFO("22222");
                 it_.reset(new image_transport::ImageTransport(node));
-                image_sub_ = it_->subscribe("/camera_array/cam0/image_raw",1, &subscriber_nodelet::imgCallback, this);
+                image_sub_ = it_->subscribe("/camera_array/cam0/image_raw",100, &subscriber_nodelet::imgCallback, this);
                 NODELET_INFO("onInit for Subscriber nodelet Initialized");
             }
 
             void imgCallback(const sensor_msgs::Image::ConstPtr& msg)
             {
                 // dont modify the input msg in any way
+                NODELET_INFO("11111");
                 sensor_msgs::Image tmp_img = *msg;
-                NODELET_INFO_STREAM("diff time is "<< ros::Time::now().toSec() - tmp_img.header.stamp.toSec());
+                // NODELET_INFO_STREAM("diff time is "<< ros::Time::now().toSec() - tmp_img.header.stamp.toSec());
+                
                 // copy input img to cv::mat and do any cv stuff
                 // dont do time intense stuff in callbacks
             }

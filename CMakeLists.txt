@@ -120,12 +120,17 @@ add_library (acquilib SHARED
   src/capture.cpp
   src/camera.cpp
 )
-add_dependencies(acquilib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_gencfg)
+add_dependencies(acquilib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_gencfg ${OpenCV_EXPORTED_TARGETS})
 target_link_libraries(acquilib ${LIBS} ${catkin_LIBRARIES})
 
 add_executable (acquisition_node src/acquisition_node.cpp)
+# add_executable (acquisition_node_sub src/acquisition_node_sub.cpp)
+# add_executable(subscriber_examples examples/subscriber_nodelet.cpp)
+
 add_dependencies(acquisition_node acquilib ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_gencfg)
 target_link_libraries (acquisition_node acquilib ${LIBS} ${catkin_LIBRARIES})
+# add_dependencies(acquisition_node_sub acquilib ${catkin_EXPORTED_TARGETS} ${PROJECT_NAME}_gencfg)
+# target_link_libraries (acquisition_node_sub acquilib ${LIBS} ${catkin_LIBRARIES})
 
 ## subscriber_example for subscribing as nodelet
 add_library (subscriber_example examples/subscriber_nodelet.cpp)

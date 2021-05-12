@@ -682,12 +682,12 @@ void acquisition::Capture::init_cameras(bool soft = false) {
 
             if (!soft) {
 
-                cams[i].set_color(color_);
-                cams[i].setIntValue("BinningHorizontal", binning_);
-                cams[i].setIntValue("BinningVertical", binning_);                
-                cams[i].setEnumValue("ExposureMode", "Timed");
-                cams[i].setBoolValue("ReverseX", flip_horizontal_vec_[i]);
-                cams[i].setBoolValue("ReverseY", flip_vertical_vec_[i]);
+                // cams[i].set_color(color_);
+                // cams[i].setIntValue("BinningHorizontal", binning_);
+                // cams[i].setIntValue("BinningVertical", binning_);                
+                // cams[i].setEnumValue("ExposureMode", "Timed");
+                // cams[i].setBoolValue("ReverseX", flip_horizontal_vec_[i]);
+                // cams[i].setBoolValue("ReverseY", flip_vertical_vec_[i]);
                 
                 if (region_of_interest_set_){
                     if (region_of_interest_width_ != 0)
@@ -723,7 +723,7 @@ void acquisition::Capture::init_cameras(bool soft = false) {
                     cams[i].setEnumValue("AutoExposureTargetGreyValueAuto", "Off");
                     cams[i].setFloatValue("AutoExposureTargetGreyValue", target_grey_value_);
                 } else {
-                    cams[i].setEnumValue("AutoExposureTargetGreyValueAuto", "Continuous");
+                    // cams[i].setEnumValue("AutoExposureTargetGreyValueAuto", "Continuous");
                 }
 
                 // cams[i].setIntValue("DecimationHorizontal", decimation_);
@@ -739,6 +739,7 @@ void acquisition::Capture::init_cameras(bool soft = false) {
                 // set only master to be software triggered
                 if (cams[i].is_master()) { 
                     if (MAX_RATE_SAVE_){
+                      cout<<"1111"<<endl;
                       cams[i].setEnumValue("LineSelector", "Line2");
                       cams[i].setEnumValue("LineMode", "Output");
                       cams[i].setBoolValue("AcquisitionFrameRateEnable", false);

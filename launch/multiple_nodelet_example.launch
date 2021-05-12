@@ -22,6 +22,6 @@
 
         <!-- launch example_subscriber_nodelet -->
         <node pkg="nodelet" type="nodelet" name="subscriber_nodelet"
-        args="load subscriber_nodelet_ns/subscriber_nodelet $(arg vision_nm)" />
+        args="load subscriber_nodelet_ns/subscriber_nodelet $(arg vision_nm)" output="screen"/>
     </group >
 </launch>
